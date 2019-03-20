@@ -1,10 +1,11 @@
 import java.awt.Graphics;
 
+
 public class GameObject {
     int x;
 
     int y;
-
+boolean isAlive=true;
     int width;
     int height;
     
