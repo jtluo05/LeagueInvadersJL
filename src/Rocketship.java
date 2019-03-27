@@ -17,4 +17,9 @@ public class Rocketship extends GameObject {
 
 		g.fillRect(x, y, width, height);
 	}
+	
+	int xOfGun() {
+		int loc=x+width/2-5;
+		return loc;
+	}
 }
