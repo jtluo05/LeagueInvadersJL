@@ -8,7 +8,8 @@ int speed=10;
 		
 	}
 	void update() {
-y=y-speed;
+		super.update();
+		y=y-speed;
 if(y<=0) {
 	isAlive=false;
 	
