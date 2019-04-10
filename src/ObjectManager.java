@@ -6,12 +6,17 @@ public class ObjectManager {
 	Rocketship r;
 	long enemyTimer = 0;
 	int enemySpawnTime = 1000;
+	int score = 0;
 	ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	ArrayList<Alien> aliens = new ArrayList<Alien>();
 
 	ObjectManager(Rocketship r) {
 		this.r = r;
 
+	}
+
+	int getScore() {
+		return score;
 	}
 
 	void update() {
@@ -22,6 +27,7 @@ public class ObjectManager {
 		for (Alien a : aliens) {
 			a.update();
 		}
+		getScore();
 	}
 
 	void draw(Graphics g) {
@@ -53,12 +59,13 @@ public class ObjectManager {
 	}
 
 	void purgeObjects() {
-		for (int i = 0; i > projectiles.size(); i++) {
+		for (int i = 0; i < projectiles.size(); i++) {
 			if (!projectiles.get(i).isAlive) {
 				projectiles.remove(i);
+
 			}
 		}
-		for (int i = 0; i > aliens.size(); i++) {
+		for (int i = 0; i < aliens.size(); i++) {
 			if (!aliens.get(i).isAlive) {
 				aliens.remove(i);
 			}
@@ -69,18 +76,19 @@ public class ObjectManager {
 		for (Alien a : aliens) {
 
 			if (r.collisionBox.intersects(a.collisionBox)) {
-
+				a.isAlive = false;
 				r.isAlive = false;
-				for (Projectile p : projectiles) {
-					if (p.collisionBox.intersects(a.collisionBox)) {
-
-						p.isAlive = false;
-						a.isAlive = false;
-
-					}
-				}
+break;
 			}
 
+			for (Projectile p : projectiles) {
+				if (p.collisionBox.intersects(a.collisionBox)) {
+					score++;
+					p.isAlive = false;
+					a.isAlive = false;
+
+				}
+			}
 		}
 
 	}

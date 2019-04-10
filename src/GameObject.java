@@ -15,7 +15,7 @@ boolean isAlive=true;
     		   this.y=y;
     		   this.width=width;
     		   this.height=height;
-    		   collisionBox=new Rectangle();
+    		   collisionBox=new Rectangle(x,y,width,height);
     }
     
     void update() {

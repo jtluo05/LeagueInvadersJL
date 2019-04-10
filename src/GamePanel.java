@@ -1,4 +1,4 @@
-import java.awt.Color;
+ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -14,7 +14,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int MENU_STATE = 0;
 	int currentState = MENU_STATE;
 	final int GAME_STATE = 1;
-	int enimiesKilled = 0;
+	int enemiesKilled = 0;
 	final int END_STATE = 2;
 	Font titleFont;
 	Font regularFont;
@@ -45,6 +45,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 om.manageEnemies();
 om.checkCollision();
 om.purgeObjects();
+if(rs.isAlive==false) {
+	currentState=END_STATE;
+}
 	}
 
 	void updateEndState() {
@@ -74,13 +77,13 @@ om.purgeObjects();
 
 	void drawEndState(Graphics g) {
 		g.setColor(Color.RED);
-
+enemiesKilled=om.getScore();
 		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
 		g.setFont(titleFont);
 		g.setColor(Color.BLACK);
 		g.drawString("GAME OVER", 100, 100);
 		g.setFont(regularFont);
-		g.drawString("You killed " + enimiesKilled + " enimies", 100, 400);
+		g.drawString("You killed " + enemiesKilled + " enemies", 100, 400);
 		g.drawString("Press ENTER to restart", 75, 600);
 
 	}
@@ -140,6 +143,10 @@ om.purgeObjects();
 
 				currentState = MENU_STATE;
 
+			}
+			if (currentState==END_STATE) {
+			Rocketship rs=new Rocketship(250, 700, 50, 50);
+				ObjectManager o=new ObjectManager(rs);
 			}
 		}
 
