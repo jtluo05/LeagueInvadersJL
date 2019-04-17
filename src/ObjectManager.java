@@ -62,6 +62,7 @@ public class ObjectManager {
 		for (int i = 0; i < projectiles.size(); i++) {
 			if (!projectiles.get(i).isAlive) {
 				projectiles.remove(i);
+			
 
 			}
 		}
